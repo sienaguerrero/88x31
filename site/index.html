@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>88x31 button maker</title>
+<meta name="description" content="Make a Y2K-style 88x31 web button and save it as a PNG or GIF.">
+<meta property="og:title" content="88x31 button maker">
+<meta property="og:description" content="Make a tiny web button for your site.">
+<meta property="og:url" content="https://88x31.siena.codes/">
+<link rel="canonical" href="https://88x31.siena.codes/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#maker">Skip to the maker</a>
+
+<div class="page">
+  <header class="masthead">
+    <div class="logo-row">
+      <h1 class="logo"><a href="/"><span class="spark" aria-hidden="true">&#10022;</span>88x31<span class="spark s2" aria-hidden="true">&#10023;</span></a></h1>
+      <p class="tagline">make a tiny web button for your site <span class="new">new!</span></p>
+    </div>
+    <p class="intro">88x31 buttons are the little badges people put on their pages to link to each other. Pick a look, type your text, and save it.</p>
+  </header>
+
+  <main id="maker">
+    <section class="box" aria-labelledby="presets-h">
+      <h2 class="bar" id="presets-h">Start from an example</h2>
+      <ul class="presets" id="presets"></ul>
+      <label class="check keep"><input type="checkbox" id="keep-text"> Keep my text when I pick an example</label>
+    </section>
+
+    <div class="layout">
+      <div class="col preview-col">
+        <section class="box" aria-labelledby="preview-h">
+          <h2 class="bar" id="preview-h">Your button</h2>
+          <div class="stage"><canvas id="big" width="88" height="31" role="img" aria-label="Button preview"></canvas></div>
+          <div class="actual"><canvas id="small" width="88" height="31" aria-hidden="true"></canvas><span class="small">actual size</span></div>
+          <div class="actions">
+            <button type="button" class="btn" id="png">Save PNG</button>
+            <button type="button" class="btn" id="gif">Save GIF</button>
+            <button type="button" class="btn" id="play" aria-pressed="false">Pause</button>
+          </div>
+          <p class="small save-note" id="save-note"></p>
+        </section>
+
+        <section class="box" aria-labelledby="code-h">
+          <h2 class="bar" id="code-h">Link code</h2>
+          <div class="fields">
+            <label class="field wide">Link to<input id="href" type="url" value="https://88x31.siena.codes" autocomplete="url"></label>
+            <label class="field wide">Alt text<input id="alt" type="text" maxlength="120"></label>
+            <label class="field wide">HTML<textarea id="code" rows="3" readonly spellcheck="false"></textarea></label>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn" id="copy">Copy code</button>
+            <span class="small" id="copied" role="status"></span>
+          </div>
+          <p class="small">Upload the image next to your page, or change the src to wherever you put it.</p>
+        </section>
+      </div>
+
+      <form class="col controls" id="controls" autocomplete="off">
+        <section class="box" aria-labelledby="text-h">
+          <h2 class="bar" id="text-h">Text</h2>
+          <div class="fields">
+            <div class="line-row">
+              <label class="field grow">Top line<input name="line1" type="text" maxlength="30"></label>
+              <label class="field num">Size<input name="size1" type="number" min="6" max="24" step="1" inputmode="numeric"></label>
+              <label class="check"><input name="bold1" type="checkbox"> Bold</label>
+            </div>
+
+            <div class="line-row">
+              <label class="field grow">Bottom line<input name="line2" type="text" maxlength="30"></label>
+              <label class="field num">Size<input name="size2" type="number" min="6" max="24" step="1" inputmode="numeric"></label>
+              <label class="check"><input name="bold2" type="checkbox"> Bold</label>
+            </div>
+
+            <label class="field">Font
+              <select name="font">
+                <option>Verdana</option>
+                <option>Tahoma</option>
+                <option>Arial Black</option>
+                <option>Courier New</option>
+                <option>Trebuchet MS</option>
+                <option>Georgia</option>
+                <option>Comic Sans MS</option>
+              </select>
+            </label>
+            <label class="field color">Color<input name="textColor" type="color"></label>
+            <label class="field">Edge
+              <select name="effect">
+                <option value="none">None</option>
+                <option value="glow">Glow</option>
+                <option value="outline">Outline</option>
+                <option value="shadow">Shadow</option>
+              </select>
+            </label>
+            <label class="field color" id="effect-color">Edge color<input name="effectColor" type="color"></label>
+            <label class="field range">Left or right<input name="dx" type="range" min="-12" max="12" step="1"></label>
+            <label class="field range">Up or down<input name="dy" type="range" min="-8" max="8" step="1"></label>
+            <label class="check wide"><input name="sharp" type="checkbox"> Sharp pixels (no smoothing)</label>
+          </div>
+        </section>
+
+        <section class="box" aria-labelledby="bg-h">
+          <h2 class="bar" id="bg-h">Background</h2>
+          <fieldset class="chips">
+            <legend class="sr">Background style</legend>
+            <label><input type="radio" name="bg" value="solid"><span>Solid</span></label>
+            <label><input type="radio" name="bg" value="gradient"><span>Gradient</span></label>
+            <label><input type="radio" name="bg" value="checker"><span>Checkerboard</span></label>
+            <label><input type="radio" name="bg" value="pinwheel"><span>Pinwheel</span></label>
+            <label><input type="radio" name="bg" value="stripes"><span>Stripes</span></label>
+            <label><input type="radio" name="bg" value="grooves"><span>Grooves</span></label>
+            <label><input type="radio" name="bg" value="glitter"><span>Glitter</span></label>
+            <label><input type="radio" name="bg" value="stars"><span>Stars</span></label>
+          </fieldset>
+          <div class="fields">
+            <label class="field color" data-color="0"><span>Color 1</span><input name="c1" type="color"></label>
+            <label class="field color" data-color="1"><span>Color 2</span><input name="c2" type="color"></label>
+            <label class="field color" data-color="2"><span>Color 3</span><input name="c3" type="color"></label>
+            <label class="field range" id="scale-row">Pattern size<input name="scale" type="range" min="2" max="12" step="1"></label>
+          </div>
+        </section>
+
+        <section class="box" aria-labelledby="border-h">
+          <h2 class="bar" id="border-h">Border and icon</h2>
+          <fieldset class="chips">
+            <legend>Border</legend>
+            <label><input type="radio" name="border" value="bevel"><span>Bevel</span></label>
+            <label><input type="radio" name="border" value="double"><span>Double</span></label>
+            <label><input type="radio" name="border" value="none"><span>None</span></label>
+          </fieldset>
+          <div class="fields">
+            <label class="field color" id="border-color">Border color<input name="borderColor" type="color"></label>
+          </div>
+          <fieldset class="chips">
+            <legend>Icon</legend>
+            <label><input type="radio" name="icon" value="none"><span>None</span></label>
+            <label><input type="radio" name="icon" value="star"><span>Star</span></label>
+            <label><input type="radio" name="icon" value="heart"><span>Heart</span></label>
+            <label><input type="radio" name="icon" value="sparkle"><span>Sparkle</span></label>
+          </fieldset>
+          <div class="fields">
+            <label class="field color" id="icon-color">Icon color<input name="iconColor" type="color"></label>
+          </div>
+        </section>
+
+        <section class="box" aria-labelledby="anim-h">
+          <h2 class="bar" id="anim-h">Animation</h2>
+          <fieldset class="chips">
+            <legend class="sr">Animation</legend>
+            <label><input type="radio" name="anim" value="none"><span>None</span></label>
+            <label><input type="radio" name="anim" value="blink"><span>Blink</span></label>
+            <label><input type="radio" name="anim" value="twinkle"><span>Twinkle</span></label>
+            <label><input type="radio" name="anim" value="shine"><span>Shine</span></label>
+          </fieldset>
+          <p class="small hint">Blink flashes the bottom line. Animated buttons save as GIFs.</p>
+        </section>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p class="small center">Everything happens in your browser. Nothing is uploaded.<br>Part of the <a href="https://siena.codes">siena.codes</a> web.</p>
+  </footer>
+</div>
+
+<script src="gif.js" defer></script>
+<script src="maker.js" defer></script>
+</body>
+</html>
